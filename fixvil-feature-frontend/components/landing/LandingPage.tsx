@@ -4,11 +4,9 @@ import React from "react";
 import Navbar from "../common/Navbar";
 import HeroSection from "./HeroSection";
 import LogoTicker from "./LogoTicker";
-import FeaturesSection from "./FeaturesSection";
 import HowItWorksSection from "./HowItWorksSection";
 import PricingSection from "./PricingSection";
 import TestimonialsSection from "./TestimonialsSection";
-import CTASection from "./CTASection";
 import Footer from "../common/Footer";
 
 export default function LandingPage() {
@@ -18,11 +16,9 @@ export default function LandingPage() {
       <main>
         <HeroSection />
         <LogoTicker />
-        <FeaturesSection />
         <HowItWorksSection />
         <PricingSection />
         <TestimonialsSection />
-        <CTASection />
       </main>
       <Footer />
     </div>

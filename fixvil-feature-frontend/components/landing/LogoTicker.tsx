@@ -6,12 +6,12 @@ import { FaAmazon, FaFigma } from "react-icons/fa";
 
 const LogoTicker = () => {
   const logos = [
-    { name: "tranzact", icon: <SiGoogle className="w-8 h-8" /> },
-    { name: "GREENLEAF Organics", icon: <SiNetflix className="w-8 h-8" /> },
-    { name: "DreamHome REALTY", icon: <FaAmazon className="w-8 h-8" /> },
-    { name: "EduPrime", icon: <SiSpotify className="w-8 h-8" /> },
-    { name: "Finova", icon: <FaFigma className="w-8 h-8" /> },
-    { name: "UrbanKart", icon: <SiAirbnb className="w-8 h-8" /> },
+    { name: "tranzact", icon: <SiGoogle className="w-8 h-8 text-[#4285F4]" /> },
+    { name: "GREENLEAF Organics", icon: <SiNetflix className="w-8 h-8 text-[#E50914]" /> },
+    { name: "DreamHome REALTY", icon: <FaAmazon className="w-8 h-8 text-[#FF9900]" /> },
+    { name: "EduPrime", icon: <SiSpotify className="w-8 h-8 text-[#1ED760]" /> },
+    { name: "Finova", icon: <FaFigma className="w-8 h-8 text-[#F24E1E]" /> },
+    { name: "UrbanKart", icon: <SiAirbnb className="w-8 h-8 text-[#FF5A5F]" /> },
   ];
 
   return (
@@ -20,13 +20,18 @@ const LogoTicker = () => {
         <p className="text-center text-sm font-medium text-gray-500 mb-8 uppercase tracking-wider">
           Trusted by growing businesses
         </p>
-        <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-          {logos.map((logo, index) => (
-            <div key={index} className="flex items-center gap-2 text-gray-800 transition-colors hover:text-emerald-600">
-              {logo.icon}
-              <span className="font-bold text-lg hidden sm:block">{logo.name}</span>
-            </div>
-          ))}
+        <div className="overflow-hidden flex w-full relative group">
+          <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+          
+          <div className="flex w-max animate-marquee-right items-center gap-10 md:gap-16 transition-all duration-500 group-hover:[animation-play-state:paused] px-8">
+            {[...logos, ...logos, ...logos, ...logos].map((logo, index) => (
+              <div key={index} className="flex items-center gap-2 text-gray-900 shrink-0">
+                {logo.icon}
+                <span className="font-bold text-lg hidden sm:block whitespace-nowrap">{logo.name}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

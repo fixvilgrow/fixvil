@@ -10,8 +10,8 @@ const Footer = () => {
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* CTA Banner */}
-        <div className="bg-[#0a1512] border border-gray-800 rounded-2xl p-6 md:p-8 mb-16 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl relative overflow-hidden -mt-16 md:-mt-20 z-20">
-          <div className="flex items-center gap-5 relative z-10">
+        <div className="bg-[#0b1110]  p-6 md:p-8 mb-16 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl relative overflow-hidden -mt-16 md:-mt-20 z-20">
+          {/* <div className="flex items-center gap-5 relative z-10">
             <div className="w-14 h-14 rounded-full bg-[#c1f3d4] flex items-center justify-center flex-shrink-0">
               <span className="text-2xl">🚀</span>
             </div>
@@ -19,14 +19,14 @@ const Footer = () => {
               <h3 className="text-white text-xl font-bold mb-1">Ready to Automate Your Business?</h3>
               <p className="text-gray-400 text-sm">Start your free trial today and experience the power of automation.</p>
             </div>
-          </div>
+          </div> */}
           <div className="flex items-center gap-3 relative z-10">
-            <button className="bg-[#16a34a] hover:bg-[#15803d] text-white px-5 py-2.5 rounded-lg font-medium transition-colors flex items-center gap-2 text-sm">
+            {/* <button className="bg-[#16a34a] hover:bg-[#15803d] text-white px-5 py-2.5 rounded-lg font-medium transition-colors flex items-center gap-2 text-sm">
               Start 14-Day Free Trial <FaArrowRight className="w-3.5 h-3.5" />
             </button>
             <button className="text-white hover:text-gray-300 px-4 py-2.5 font-medium transition-colors flex items-center gap-2 text-sm">
               Book a Demo <FaRegPlayCircle className="w-5 h-5" />
-            </button>
+            </button> */}
           </div>
         </div>
 

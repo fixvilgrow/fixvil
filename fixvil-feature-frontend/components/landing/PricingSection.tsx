@@ -10,8 +10,8 @@ const PricingSection = () => {
     {
       name: "Starter",
       description: "Perfect for small businesses just getting started.",
-      priceMonthly: "2,999",
-      priceYearly: "2,399",
+      priceMonthly: "999",
+      priceYearly: "799",
       features: [
         "Up to 2,000 Contacts",
         "1 WhatsApp Number",
@@ -24,8 +24,8 @@ const PricingSection = () => {
     {
       name: "Growth",
       description: "For growing businesses that need more power.",
-      priceMonthly: "6,999",
-      priceYearly: "5,599",
+      priceMonthly: "1,499",
+      priceYearly: "1,199",
       features: [
         "Up to 10,000 Contacts",
         "2 WhatsApp Numbers",
@@ -39,8 +39,8 @@ const PricingSection = () => {
     {
       name: "Business",
       description: "For businesses looking to scale their operations.",
-      priceMonthly: "12,999",
-      priceYearly: "10,399",
+      priceMonthly: "2,999",
+      priceYearly: "2,399",
       features: [
         "Up to 50,000 Contacts",
         "5 WhatsApp Numbers",
@@ -74,7 +74,7 @@ const PricingSection = () => {
     <section id="pricing" className="py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div className="max-w-2xl">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
               Simple, Transparent Pricing

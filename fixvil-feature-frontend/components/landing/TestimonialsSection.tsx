@@ -23,6 +23,18 @@ const TestimonialsSection = () => {
       author: "Anas P.",
       role: "CEO, GreenLeaf Organics",
       avatarSeed: "12"
+    },
+    {
+      content: "The custom workflows they built for us are flawless. It feels like we hired an entire ops team.",
+      author: "Sarah L.",
+      role: "Operations Manager, FastTrack",
+      avatarSeed: "9"
+    },
+    {
+      content: "Incredible service. We went from chaotic spreadsheets to a perfectly automated CRM in just days.",
+      author: "David M.",
+      role: "Founder, Peak Solutions",
+      avatarSeed: "2"
     }
   ];
 
@@ -39,10 +51,11 @@ const TestimonialsSection = () => {
           </p>
         </div>
 
-        <div className="relative">
-          <div className="flex flex-col md:flex-row gap-6 md:gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex-1 relative group hover:-translate-y-1 transition-transform duration-300">
+        <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)] -mx-4 px-4">
+          {/* Infinite Marquee Container */}
+          <div className="flex w-max animate-marquee-left hover:[animation-play-state:paused] gap-6 md:gap-8 py-4">
+            {[...testimonials, ...testimonials].map((testimonial, index) => (
+              <div key={index} className="w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[30vw] flex-none bg-white p-8 rounded-3xl shadow-sm border border-gray-100 relative group hover:-translate-y-2 transition-all duration-300 cursor-pointer">
                 <div className="flex text-amber-400 mb-6 gap-1">
                   {[1, 2, 3, 4, 5].map(i => <FaStar key={i} className="w-4 h-4" />)}
                 </div>
@@ -75,12 +88,12 @@ const TestimonialsSection = () => {
           </div>
         </div>
         
-        <div className="flex justify-center mt-12 gap-2">
+        {/* <div className="flex justify-center mt-12 gap-2">
           <div className="w-8 h-2 rounded-full bg-emerald-500"></div>
           <div className="w-2 h-2 rounded-full bg-gray-300"></div>
           <div className="w-2 h-2 rounded-full bg-gray-300"></div>
           <div className="w-2 h-2 rounded-full bg-gray-300"></div>
-        </div>
+        </div> */}
 
       </div>
     </section>
