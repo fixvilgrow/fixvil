@@ -38,7 +38,7 @@ const Navbar = () => {
                 <FiChevronDown className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
               </div>
             </div>
-            <Link href="/#about" className="text-gray-600 hover:text-gray-900 font-medium text-sm transition-colors">
+            <Link href="/about" className="text-gray-600 hover:text-gray-900 font-medium text-sm transition-colors">
               About Us
             </Link>
           </div>
