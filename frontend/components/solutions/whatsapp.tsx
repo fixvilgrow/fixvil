@@ -13,8 +13,16 @@ import {
   FiCheckCircle,
   FiPlay,
   FiMessageSquare,
-  FiShield,
   FiTrendingUp,
+  FiUser,
+  FiPhone,
+  FiVideo,
+  FiMoreVertical,
+  FiSmile,
+  FiPaperclip,
+  FiCamera,
+  FiArrowLeft,
+  FiRefreshCw,
 } from "react-icons/fi";
 import { FaWhatsapp, FaRobot, FaCheck } from "react-icons/fa";
 
@@ -57,144 +65,80 @@ export default function WhatsAppSolution() {
   ];
 
   return (
-    <div className="bg-white pt-24 pb-16 overflow-hidden">
-      {/* HERO SECTION */}
-      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left Hero Content */}
-          <div className="lg:col-span-6 space-y-6 text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 text-[#046c4e] text-xs font-semibold tracking-wide uppercase">
-              <span className="w-2 h-2 rounded-full bg-[#046c4e] animate-pulse"></span>
+    <div className="bg-white pt-24 pb-16 overflow-hidden font-sans">
+      {/* HERO SECTION WITH FULL IMAGE BACKGROUND */}
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16">
+        <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-200/60 min-h-[560px] lg:min-h-[640px] flex items-center">
+          {/* Full Background Image Element */}
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url('/whatsapp-hero.jpg')` }}
+          />
+
+          {/* Gradient Overlay for Text Readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent lg:w-[62%]" />
+
+          {/* Foreground Hero Content */}
+          <div className="relative z-10 max-w-2xl p-6 sm:p-12 lg:p-16 space-y-6 text-left">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50/90 backdrop-blur-md border border-emerald-200 text-[#046c4e] text-xs font-bold tracking-wide uppercase shadow-2xs">
+              <FaWhatsapp className="w-4 h-4 text-emerald-600" />
               WhatsApp Business Automation
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.15]">
-              Automate WhatsApp. <br />
-              <span className="text-[#046c4e]">Without the manual work.</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.12]">
+              Turn WhatsApp <br />
+              into Your <br />
+              <span className="text-[#046c4e]">24/7 Sales Agent</span>
             </h1>
 
-            <p className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-xl">
-              Build workflows, respond instantly, send broadcast updates, and follow up automatically with real WhatsApp messages directly to your customers.
+            <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-medium max-w-xl">
+              Automate customer conversations, capture leads, send follow-ups and grow your business — all on WhatsApp.
             </p>
+
+            {/* 4 Feature Icons Row */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+              <div className="flex flex-col items-center text-center p-3 rounded-2xl bg-white/90 backdrop-blur-md border border-gray-200/80 shadow-sm hover:bg-white transition-colors">
+                <div className="w-10 h-10 rounded-full bg-emerald-100 text-[#046c4e] flex items-center justify-center mb-1.5 font-bold">
+                  <FiZap className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-bold text-gray-800">Instant<br />Replies</span>
+              </div>
+              <div className="flex flex-col items-center text-center p-3 rounded-2xl bg-white/90 backdrop-blur-md border border-gray-200/80 shadow-sm hover:bg-white transition-colors">
+                <div className="w-10 h-10 rounded-full bg-emerald-100 text-[#046c4e] flex items-center justify-center mb-1.5 font-bold">
+                  <FiUsers className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-bold text-gray-800">Qualify<br />Leads</span>
+              </div>
+              <div className="flex flex-col items-center text-center p-3 rounded-2xl bg-white/90 backdrop-blur-md border border-gray-200/80 shadow-sm hover:bg-white transition-colors">
+                <div className="w-10 h-10 rounded-full bg-emerald-100 text-[#046c4e] flex items-center justify-center mb-1.5 font-bold">
+                  <FiRefreshCw className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-bold text-gray-800">Automated<br />Follow-ups</span>
+              </div>
+              <div className="flex flex-col items-center text-center p-3 rounded-2xl bg-white/90 backdrop-blur-md border border-gray-200/80 shadow-sm hover:bg-white transition-colors">
+                <div className="w-10 h-10 rounded-full bg-emerald-100 text-[#046c4e] flex items-center justify-center mb-1.5 font-bold">
+                  <FiUser className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-bold text-gray-800">Human<br />Handoff</span>
+              </div>
+            </div>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
               <Link
                 href="/contact"
-                className="bg-[#046c4e] hover:bg-[#03543d] text-white font-bold text-base px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all text-center flex items-center justify-center gap-2 group"
+                className="bg-[#046c4e] hover:bg-[#03543d] text-white font-bold text-base px-8 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all text-center flex items-center justify-center gap-2 group"
               >
                 Start Free Trial
                 <FiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/contact"
-                className="border border-gray-200 hover:border-gray-300 bg-white hover:bg-gray-50 text-gray-800 font-semibold text-base px-7 py-3.5 rounded-xl transition-all text-center flex items-center justify-center gap-2"
+                className="border border-gray-300 hover:border-gray-400 bg-white/90 backdrop-blur-md hover:bg-white text-gray-800 font-semibold text-base px-7 py-3.5 rounded-xl transition-all text-center flex items-center justify-center gap-2 shadow-sm"
               >
                 <FiPlay className="w-4 h-4 text-[#046c4e]" />
                 Book a Demo
               </Link>
-            </div>
-
-            {/* Hero Quick Stats */}
-            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-gray-100">
-              <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-gray-900">1.4M+</div>
-                <div className="text-xs sm:text-sm text-gray-500 font-medium">Daily Messages</div>
-              </div>
-              <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-gray-900">98.4%</div>
-                <div className="text-xs sm:text-sm text-gray-500 font-medium">Open Rate</div>
-              </div>
-              <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-gray-900">850+</div>
-                <div className="text-xs sm:text-sm text-gray-500 font-medium">Active Businesses</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Hero Interactive Graphic (WhatsApp Mockup) */}
-          <div className="lg:col-span-6 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none bg-gradient-to-b from-emerald-500/10 to-teal-500/5 p-4 sm:p-6 rounded-3xl border border-emerald-100 shadow-2xl">
-              {/* WhatsApp App Mock Container */}
-              <div className="bg-[#efeae2] rounded-2xl overflow-hidden shadow-lg border border-gray-200">
-                {/* App Header */}
-                <div className="bg-[#075e54] text-white px-4 py-3 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#075e54]">
-                      <FaWhatsapp className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <div className="font-bold text-sm leading-tight flex items-center gap-1">
-                        Fixvil Business Bot
-                        <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                      </div>
-                      <div className="text-[11px] text-emerald-100">Official Meta Cloud API • Online</div>
-                    </div>
-                  </div>
-                  <span className="text-xs bg-emerald-700/60 px-2 py-1 rounded text-emerald-100">Automated</span>
-                </div>
-
-                {/* Chat Area */}
-                <div className="p-4 space-y-3 min-h-[320px] text-xs sm:text-sm">
-                  {/* System Date Badge */}
-                  <div className="text-center my-2">
-                    <span className="bg-white/80 backdrop-blur text-gray-500 text-[10px] uppercase tracking-wider font-semibold px-2.5 py-1 rounded-full shadow-2xs">
-                      Today
-                    </span>
-                  </div>
-
-                  {/* Incoming Customer Message */}
-                  <div className="flex justify-end">
-                    <div className="bg-[#dcf8c6] text-gray-800 p-3 rounded-xl rounded-tr-none max-w-[82%] shadow-2xs">
-                      <p>Hi! I want to automate customer responses on WhatsApp. How does Fixvil work?</p>
-                      <span className="text-[10px] text-gray-500 block text-right mt-1">10:42 AM ✓✓</span>
-                    </div>
-                  </div>
-
-                  {/* Outgoing Bot Response */}
-                  <div className="flex justify-start">
-                    <div className="bg-white text-gray-800 p-3.5 rounded-xl rounded-tl-none max-w-[88%] shadow-2xs space-y-2 border border-gray-100">
-                      <div className="flex items-center gap-1.5 font-bold text-emerald-800 text-xs">
-                        <FaRobot className="w-3.5 h-3.5 text-emerald-600" />
-                        Fixvil AI Assistant
-                      </div>
-                      <p className="text-gray-700 leading-snug">
-                        👋 Welcome to Fixvil! We help you automate customer replies 24/7, send broadcasts, and manage team chats from 1 inbox.
-                      </p>
-                      <div className="pt-2 border-t border-gray-100 space-y-1.5">
-                        <button className="w-full text-center bg-emerald-50 hover:bg-emerald-100 text-[#046c4e] font-semibold py-1.5 px-3 rounded text-xs transition-colors border border-emerald-200">
-                          🚀 Explore Live Features
-                        </button>
-                        <button className="w-full text-center bg-gray-50 hover:bg-gray-100 text-gray-700 font-medium py-1.5 px-3 rounded text-xs transition-colors border border-gray-200">
-                          📞 Talk to Sales Agent
-                        </button>
-                      </div>
-                      <span className="text-[10px] text-gray-400 block text-right">10:42 AM</span>
-                    </div>
-                  </div>
-
-                  {/* Second Customer Reply */}
-                  <div className="flex justify-end pt-1">
-                    <div className="bg-[#dcf8c6] text-gray-800 p-2.5 rounded-xl rounded-tr-none max-w-[80%] shadow-2xs">
-                      <p className="font-semibold text-emerald-900">Click: 📞 Talk to Sales Agent</p>
-                      <span className="text-[10px] text-gray-500 block text-right mt-1">10:43 AM ✓✓</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Input Bar Footer */}
-                <div className="bg-gray-100 px-3 py-2 flex items-center gap-2 border-t border-gray-200">
-                  <input
-                    type="text"
-                    disabled
-                    placeholder="Type a message..."
-                    className="flex-1 bg-white text-xs px-3 py-2 rounded-full border border-gray-200 text-gray-500"
-                  />
-                  <div className="w-8 h-8 rounded-full bg-[#075e54] text-white flex items-center justify-center shrink-0">
-                    <FiSend className="w-3.5 h-3.5" />
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
