@@ -1,368 +1,383 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
-  FiZap,
-  FiShield,
-  FiClock,
-  FiGitBranch,
-  FiInbox,
-  FiDatabase,
-  FiFileText,
-  FiRefreshCw,
+  FiMessageSquare,
+  FiSend,
+  FiCpu,
+  FiCode,
+  FiUsers,
   FiBarChart2,
-  FiLock,
+  FiCheckCircle,
+  FiShoppingBag,
   FiCheck,
-  FiX,
-  FiArrowRight,
+  FiHeart
 } from "react-icons/fi";
 import { FaWhatsapp, FaInstagram } from "react-icons/fa";
 
 export default function Features() {
-  const featureList = [
+  const [activeTab, setActiveTab] = useState<"whatsapp" | "instagram">("whatsapp");
+
+  // WHATSAPP FEATURES
+  const whatsappLeftFeatures = [
     {
-      id: "whatsapp",
-      icon: <FaWhatsapp className="w-6 h-6 text-emerald-600" />,
-      badge: "Meta API",
-      title: "WhatsApp Automation",
-      description:
-        "Official Meta Cloud API integration supporting automated broadcasts, AI auto-replies, catalog sharing, and interactive messaging.",
-      tagLeft: "Meta Cloud API",
-      tagRight: "Zero-delay dispatch",
-      accentBg: "bg-emerald-50 border-emerald-100",
+      id: "broadcast",
+      icon: <FiMessageSquare className="w-6 h-6 text-emerald-600" />,
+      title: "Broadcast Communication",
+      description: "Push out your campaigns and engage with high response WhatsApp messages.",
     },
     {
-      id: "instagram",
-      icon: <FaInstagram className="w-6 h-6 text-pink-600" />,
-      badge: "Direct DM & Story",
-      title: "Instagram Automation",
-      description:
-        "Convert Story mentions, DM inquiries, and comment triggers into instantaneous sales & support pipeline conversations.",
-      tagLeft: "Auto DM & Comments",
-      tagRight: "Instant Lead Capture",
-      accentBg: "bg-pink-50 border-pink-100",
+      id: "chatbots",
+      icon: <FiCpu className="w-6 h-6 text-emerald-600" />,
+      title: "Chatbots",
+      description: "Create no-code chatbots to provide instant responses to common requests.",
     },
     {
-      id: "workflow",
-      icon: <FiGitBranch className="w-6 h-6 text-emerald-600" />,
-      badge: "No-Code",
-      title: "Visual Workflow Builder",
-      description:
-        "Intuitive drag-and-drop logic nodes, time-delay throttles, condition forks, and enterprise webhook triggers.",
-      tagLeft: "Dynamic Routing",
-      tagRight: "Multi-branch Logic",
-      accentBg: "bg-emerald-50 border-emerald-100",
+      id: "collaborate",
+      icon: <FiUsers className="w-6 h-6 text-emerald-600" />,
+      title: "Team Inbox & Widgets",
+      description: "Add WhatsApp widgets to your e-store & collaborate with unlimited team members.",
     },
     {
-      id: "inbox",
-      icon: <FiInbox className="w-6 h-6 text-blue-600" />,
-      badge: "Multi-Agent",
-      title: "Unified Shared Inbox",
-      description:
-        "Centralize inbound WhatsApp and Instagram conversations with live agent collision detection and instant assignment.",
-      tagLeft: "Collision Protection",
-      tagRight: "Role Assignment",
-      accentBg: "bg-blue-50 border-blue-100",
-    },
-    {
-      id: "crm",
-      icon: <FiDatabase className="w-6 h-6 text-emerald-600" />,
-      badge: "CRM Sync",
-      title: "Lead Management & CRM",
-      description:
-        "Import phone numbers, custom parameters, conversation stages, and 2-way sync with Salesforce, HubSpot and custom databases.",
-      tagLeft: "Automated Tagging",
-      tagRight: "Deep CRM Sync",
-      accentBg: "bg-emerald-50 border-emerald-100",
-    },
-    {
-      id: "templates",
-      icon: <FiFileText className="w-6 h-6 text-purple-600" />,
-      badge: "Rich Media",
-      title: "Templates & Rich Media",
-      description:
-        "Send dynamic HSM templates, product catalogs, multi-product carousels, and high-res verified delivery files.",
-      tagLeft: "Message Verification",
-      tagRight: "Dynamic Variables",
-      accentBg: "bg-purple-50 border-purple-100",
-    },
-    {
-      id: "drip",
-      icon: <FiRefreshCw className="w-6 h-6 text-emerald-600" />,
-      badge: "Automated",
-      title: "Intelligent Drip Sequences",
-      description:
-        "Trigger timely recovery flows, appointment reminders, and automated nurture sequences based on customer engagement campaigns.",
-      tagLeft: "Event-Driven Triggers",
-      tagRight: "Adaptive Delay",
-      accentBg: "bg-emerald-50 border-emerald-100",
-    },
-    {
-      id: "analytics",
-      icon: <FiBarChart2 className="w-6 h-6 text-blue-600" />,
-      badge: "Analytics",
-      title: "Real-time Analytics",
-      description:
-        "Track response velocity, resolution metrics, delivery read rates, and operator capacity in unified dashboards.",
-      tagLeft: "Live Telemetry",
-      tagRight: "Exportable Reports",
-      accentBg: "bg-blue-50 border-blue-100",
-    },
-    {
-      id: "governance",
-      icon: <FiLock className="w-6 h-6 text-emerald-600" />,
-      badge: "Enterprise",
-      title: "Team Governance",
-      description:
-        "Empower operations with granular role permissions, access controls, activity audit logs, and enterprise SOC-2 compliance.",
-      tagLeft: "Role-Based Access",
-      tagRight: "Enterprise SOC-2",
-      accentBg: "bg-emerald-50 border-emerald-100",
+      id: "green-tick",
+      icon: <FiCheckCircle className="w-6 h-6 text-emerald-600" />,
+      title: "Green Tick Verification",
+      description: "Fixvil helps you apply for the Green tick on WhatsApp alongside your brand name.",
     },
   ];
 
+  const whatsappRightFeatures = [
+    {
+      id: "bulk-campaigns",
+      icon: <FiSend className="w-6 h-6 text-emerald-600" />,
+      title: "Bulk Campaigns",
+      description: "Broadcast Promotional offers that get 90%+ open rates effortlessly.",
+    },
+    {
+      id: "easy-api",
+      icon: <FiCode className="w-6 h-6 text-emerald-600" />,
+      title: "Easy API Integration",
+      description: "Pre-built integrations let you integrate with your tech stack in a few clicks.",
+    },
+    {
+      id: "analytics",
+      icon: <FiBarChart2 className="w-6 h-6 text-emerald-600" />,
+      title: "Monitor Analytics",
+      description: "Monitor campaign performance, response & resolution times of your agents.",
+    },
+    {
+      id: "catalogs",
+      icon: <FiShoppingBag className="w-6 h-6 text-emerald-600" />,
+      title: "Share Product Catalogs",
+      description: "Send product catalogs at scale to customers as part of campaigns & auto-replies.",
+    },
+  ];
+
+  // INSTAGRAM FEATURES
+  const instagramLeftFeatures = [
+    {
+      id: "auto-dm",
+      icon: <FiMessageSquare className="w-6 h-6 text-pink-600" />,
+      title: "Auto DM & Comments",
+      description: "Instantly reply to comments and direct messages with smart, AI-powered responses.",
+    },
+    {
+      id: "story-mentions",
+      icon: <FiHeart className="w-6 h-6 text-pink-600" />,
+      title: "Story Automation",
+      description: "Convert Story mentions and reactions into sales and support pipeline conversations.",
+    },
+    {
+      id: "collaborate-ig",
+      icon: <FiUsers className="w-6 h-6 text-pink-600" />,
+      title: "Unified Inbox",
+      description: "Centralize your Instagram communications and collaborate with your entire team.",
+    },
+    {
+      id: "meta-verified",
+      icon: <FiCheckCircle className="w-6 h-6 text-blue-600" />,
+      title: "Meta Verified",
+      description: "Establish trust with your audience by obtaining the official Meta Verified badge.",
+    },
+  ];
+
+  const instagramRightFeatures = [
+    {
+      id: "lead-gen",
+      icon: <FiSend className="w-6 h-6 text-pink-600" />,
+      title: "Lead Generation",
+      description: "Capture leads automatically from Instagram engagements and route them to your CRM.",
+    },
+    {
+      id: "easy-api-ig",
+      icon: <FiCode className="w-6 h-6 text-pink-600" />,
+      title: "Easy API Integration",
+      description: "Pre-built integrations let you connect Instagram to your existing tech stack easily.",
+    },
+    {
+      id: "analytics-ig",
+      icon: <FiBarChart2 className="w-6 h-6 text-pink-600" />,
+      title: "Monitor Analytics",
+      description: "Track campaign performance, response times, and follower engagement in real-time.",
+    },
+    {
+      id: "chatbots-ig",
+      icon: <FiCpu className="w-6 h-6 text-pink-600" />,
+      title: "Smart Chatbots",
+      description: "Deploy chatbots on Instagram to answer FAQs and handle customer inquiries 24/7.",
+    },
+  ];
+
+  const currentLeftFeatures = activeTab === "whatsapp" ? whatsappLeftFeatures : instagramLeftFeatures;
+  const currentRightFeatures = activeTab === "whatsapp" ? whatsappRightFeatures : instagramRightFeatures;
+
   return (
-    <div className="bg-[#f8fafc] text-gray-800 font-sans min-h-screen pt-28 pb-16 px-4 sm:px-6 lg:px-8">
-      {/* 1. HERO HEADER SECTION */}
-      <div className="max-w-4xl mx-auto text-center mb-16">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-xs font-semibold uppercase tracking-wider mb-4 shadow-2xs">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          FIXVIL PLATFORM SUITE
+    <div className="bg-[#f4f7f6] text-gray-800 font-sans min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden transition-colors duration-500">
+      
+      {/* 1. HEADER SECTION */}
+      <div className="max-w-4xl mx-auto text-center mb-10">
+        <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-[11px] font-bold uppercase tracking-widest mb-6 transition-colors duration-300 ${activeTab === 'whatsapp' ? 'bg-emerald-50 border-emerald-100 text-emerald-700' : 'bg-pink-50 border-pink-100 text-pink-700'}`}>
+          COMPREHENSIVE {activeTab === "whatsapp" ? "WHATSAPP" : "INSTAGRAM"} API
         </div>
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight mb-4">
-          Everything you need to automate conversations.
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#1a202c] tracking-tight leading-tight mb-6">
+          Smarter Conversations.<br />
+          <span className={activeTab === 'whatsapp' ? "text-[#00a884]" : "text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500"}>Bigger Business.</span>
         </h1>
 
-        <p className="text-gray-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-6 font-normal">
-          Explore the complete suite of AI-automation tools designed to streamline customer touchpoints on WhatsApp and Instagram.
+        <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-medium mb-10">
+          Fixvil offers comprehensive {activeTab === "whatsapp" ? "WhatsApp" : "Instagram"} API solutions and marketing services. Capture leads, reply instantly, and turn conversations into customers — 24/7.
         </p>
 
-        {/* Highlight Bullets */}
-        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm font-medium text-gray-700">
-          <div className="flex items-center gap-1.5">
-            <FiZap className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-            <span>Millisecond Trigger Latency</span>
-          </div>
-          <span className="text-gray-300 hidden sm:inline">•</span>
-          <div className="flex items-center gap-1.5">
-            <FiShield className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-            <span>Official Meta Cloud API</span>
-          </div>
-          <span className="text-gray-300 hidden sm:inline">•</span>
-          <div className="flex items-center gap-1.5">
-            <FiClock className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-            <span>99.99% Uptime Guarantee</span>
-          </div>
+        {/* Toggle Button */}
+        <div className="mb-4 text-sm font-semibold text-gray-500 uppercase tracking-widest">
+          Choose a Platform
+        </div>
+        <div className="inline-flex bg-gray-200/50 p-1 rounded-full relative">
+          <button 
+            onClick={() => setActiveTab("whatsapp")}
+            className={`relative z-10 flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${activeTab === "whatsapp" ? "text-emerald-700" : "text-gray-500 hover:text-gray-700"}`}
+          >
+            <FaWhatsapp className="w-4 h-4" /> WhatsApp
+          </button>
+          <button 
+            onClick={() => setActiveTab("instagram")}
+            className={`relative z-10 flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${activeTab === "instagram" ? "text-pink-700" : "text-gray-500 hover:text-gray-700"}`}
+          >
+            <FaInstagram className="w-4 h-4" /> Instagram
+          </button>
+          {/* Active indicator */}
+          <div 
+            className={`absolute top-1 bottom-1 w-1/2 bg-white rounded-full shadow-sm transition-transform duration-300 ease-out`}
+            style={{ transform: activeTab === "whatsapp" ? "translateX(0)" : "translateX(100%)" }}
+          ></div>
         </div>
       </div>
 
-      {/* 2. PRODUCT CAPABILITIES (3x3 Feature Grid) */}
-      <div className="max-w-6xl mx-auto mb-24">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 pb-4 border-b border-gray-200/80 gap-3">
-          <div>
-            <span className="text-[11px] font-bold tracking-widest text-emerald-600 uppercase block mb-1">
-              PRODUCT CAPABILITIES
-            </span>
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-              Engineered for Omnichannel Velocity
-            </h2>
+      {/* 2. MAIN LAYOUT (3 COLUMNS: LEFT FEATURES, PHONE, RIGHT FEATURES) */}
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8 lg:gap-4 xl:gap-12 relative z-10 mt-12">
+        
+        {/* Left Features */}
+        <div className="grid grid-cols-2 lg:flex lg:flex-col gap-3 sm:gap-6 w-full lg:w-1/3 order-2 lg:order-1">
+          {currentLeftFeatures.map((item, idx) => (
+            <div key={item.id} className="bg-white/60 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.05)] border border-white hover:shadow-lg transition-all flex flex-col sm:flex-row gap-3 sm:gap-4 items-start animate-[fadeIn_0.5s_ease-out] fill-mode-both" style={{ animationDelay: `${idx * 0.1}s` }}>
+              <div className={`w-12 h-12 shrink-0 rounded-full flex items-center justify-center ${activeTab === 'whatsapp' ? 'bg-emerald-50' : 'bg-pink-50'}`}>
+                {item.icon}
+              </div>
+              <div>
+                <h3 className="text-sm sm:text-lg font-bold text-gray-900 mb-1 sm:mb-1.5 leading-tight">{item.title}</h3>
+                <p className="text-xs sm:text-sm text-gray-500 leading-relaxed hidden sm:block">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Center Phone Mockup */}
+        <div className="w-full lg:w-1/3 flex justify-center order-1 lg:order-2 relative mt-4 lg:mt-0 shrink-0 scale-[0.85] sm:scale-100 origin-top">
+          
+          {/* Decorative Elements behind phone */}
+          <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] blur-[80px] rounded-full -z-10 transition-colors duration-700 ${activeTab === 'whatsapp' ? 'bg-emerald-500/10' : 'bg-pink-500/10'}`}></div>
+          
+          {/* Floating badge left */}
+          <div className="hidden sm:flex absolute top-32 -left-12 lg:-left-20 bg-white px-4 py-2 rounded-xl shadow-lg border border-gray-100 items-center gap-2 animate-[bounce_4s_infinite_ease-in-out] z-20">
+            <div className={`w-6 h-6 rounded-full flex items-center justify-center ${activeTab === 'whatsapp' ? 'bg-emerald-100' : 'bg-pink-100'}`}>
+              <FiUsers className={`w-3 h-3 ${activeTab === 'whatsapp' ? 'text-emerald-600' : 'text-pink-600'}`} />
+            </div>
+            <span className="text-sm font-semibold text-gray-700">New Lead</span>
           </div>
-          <div className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200/60 self-start sm:self-auto">
-            <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-            All 9 Platform Modules Available
+
+          {/* Floating badge right */}
+          <div className="hidden sm:flex absolute bottom-40 -right-8 lg:-right-16 bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex-col items-center gap-2 animate-[bounce_5s_infinite_ease-in-out] z-20">
+            <FiBarChart2 className={`w-8 h-8 ${activeTab === 'whatsapp' ? 'text-emerald-500' : 'text-pink-500'}`} />
+            <span className="text-xs font-bold text-gray-800 text-center">More Leads<br/>More Sales</span>
+          </div>
+
+          {/* Phone Body */}
+          <div className="relative w-[300px] h-[600px] bg-[#111b21] rounded-[3rem] border-[8px] border-[#0a1014] shadow-2xl overflow-hidden flex flex-col transition-all duration-500">
+            {/* Notch */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-[#0a1014] rounded-b-2xl z-50"></div>
+            
+            {/* Header */}
+            {activeTab === "whatsapp" ? (
+              <div className="bg-[#008069] pt-10 pb-3 px-4 flex items-center gap-3 text-white z-10 shadow-md">
+                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center font-bold text-lg text-[#008069] shadow-inner overflow-hidden relative shrink-0">
+                  <FaWhatsapp className="w-6 h-6" />
+                  <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-white rounded-full"></div>
+                </div>
+                <div className="flex-1 overflow-hidden">
+                  <div className="font-semibold text-base leading-tight truncate">Your Business <span className="text-xs">✓</span></div>
+                  <div className="text-xs text-white/80">online</div>
+                </div>
+              </div>
+            ) : (
+              <div className="bg-white pt-10 pb-3 px-4 flex items-center gap-3 text-black z-10 shadow-sm border-b border-gray-200">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-500 p-[2px] shrink-0">
+                  <div className="w-full h-full bg-white rounded-full flex items-center justify-center overflow-hidden">
+                    <span className="font-bold text-sm">YB</span>
+                  </div>
+                </div>
+                <div className="flex-1 overflow-hidden">
+                  <div className="font-semibold text-base leading-tight truncate">your.business <span className="text-xs text-blue-500">✓</span></div>
+                  <div className="text-xs text-gray-500">Instagram</div>
+                </div>
+              </div>
+            )}
+
+            {/* Chat Area */}
+            {activeTab === "whatsapp" ? (
+              <div className="flex-1 bg-[#efeae2] p-4 flex flex-col gap-3 overflow-hidden relative">
+                <div className="absolute inset-0 opacity-[0.06] bg-[url('https://i.pinimg.com/736x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg')] bg-repeat bg-[length:150px]"></div>
+                
+                <div className="relative z-10 flex justify-end">
+                  <div className="bg-[#dcf8c6] text-[#111b21] px-3 py-2 rounded-lg rounded-tr-none shadow-sm max-w-[85%] text-sm">
+                    Hi! Do you have this product in stock?
+                    <span className="text-[9px] text-gray-500 ml-2 float-right mt-1.5"><FiCheck className="inline text-blue-500" /><FiCheck className="inline text-blue-500 -ml-1" /> 10:24 AM</span>
+                  </div>
+                </div>
+
+                <div className="relative z-10 flex justify-start">
+                  <div className="bg-white text-[#111b21] px-3 py-2 rounded-lg rounded-tl-none shadow-sm max-w-[85%] text-sm">
+                    Hello! 👋<br/>Yes, it's available!<br/>Would you like to place an order now?
+                    <span className="text-[9px] text-gray-400 float-right mt-2">10:24 AM</span>
+                  </div>
+                </div>
+
+                <div className="relative z-10 flex justify-end">
+                  <div className="flex flex-col gap-2 w-full max-w-[85%] items-end">
+                    <button className="w-full bg-white border border-emerald-100 text-emerald-600 font-medium py-1.5 rounded shadow-sm text-sm hover:bg-emerald-50 transition-colors">
+                      Yes, I want to order
+                    </button>
+                    <button className="w-full bg-white border border-emerald-100 text-emerald-600 font-medium py-1.5 rounded shadow-sm text-sm hover:bg-emerald-50 transition-colors">
+                      Show more products
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="flex-1 bg-white p-4 flex flex-col gap-3 overflow-hidden relative">
+                <div className="text-center text-xs text-gray-400 my-2">10:24 AM</div>
+                
+                <div className="relative z-10 flex justify-end">
+                  <div className="bg-blue-500 text-white px-4 py-2.5 rounded-2xl shadow-sm max-w-[85%] text-sm">
+                    Can I see your pricing plan?
+                  </div>
+                </div>
+
+                <div className="relative z-10 flex justify-start items-end gap-2">
+                  <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-500 p-[1.5px] shrink-0 mb-1">
+                    <div className="w-full h-full bg-white rounded-full"></div>
+                  </div>
+                  <div className="bg-gray-100 text-black px-4 py-2.5 rounded-2xl shadow-sm max-w-[85%] text-sm border border-gray-100">
+                    Of course! Here are our available plans for you today.
+                  </div>
+                </div>
+
+                <div className="relative z-10 flex justify-start pl-8">
+                  <div className="flex flex-col gap-2 w-[85%]">
+                    <button className="w-full bg-white border border-gray-200 text-gray-700 font-medium py-2 rounded-xl shadow-sm text-sm hover:bg-gray-50 transition-colors">
+                      View Pricing
+                    </button>
+                    <button className="w-full bg-white border border-gray-200 text-gray-700 font-medium py-2 rounded-xl shadow-sm text-sm hover:bg-gray-50 transition-colors">
+                      Talk to Sales
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Input Area */}
+            {activeTab === "whatsapp" ? (
+              <div className="bg-[#f0f2f5] p-2 px-3 flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full text-gray-500 flex items-center justify-center shrink-0">😊</div>
+                <div className="flex-1 bg-white rounded-full px-4 py-1.5 text-sm text-gray-400 shadow-sm">
+                  Type a message...
+                </div>
+                <div className="w-8 h-8 rounded-full bg-[#00a884] flex items-center justify-center text-white shrink-0 shadow-sm">
+                  <FiSend className="w-4 h-4 -ml-0.5 mt-0.5" />
+                </div>
+              </div>
+            ) : (
+              <div className="bg-white border-t border-gray-100 p-3 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white shrink-0 shadow-sm">
+                  <FiMessageSquare className="w-4 h-4" />
+                </div>
+                <div className="flex-1 bg-gray-100 rounded-full px-4 py-2 text-sm text-gray-500 border border-gray-200">
+                  Message...
+                </div>
+              </div>
+            )}
+            
+            {/* Home indicator */}
+            <div className={`h-4 flex items-center justify-center pb-1 ${activeTab === 'whatsapp' ? 'bg-[#f0f2f5]' : 'bg-white'}`}>
+              <div className={`w-20 h-1 rounded-full ${activeTab === 'whatsapp' ? 'bg-gray-300' : 'bg-gray-200'}`}></div>
+            </div>
           </div>
         </div>
 
-        {/* 3x3 Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featureList.map((item) => (
-            <div
-              key={item.id}
-              className="bg-white rounded-2xl p-6 shadow-xs border border-gray-200/80 hover:shadow-md hover:border-emerald-200 transition-all flex flex-col justify-between group"
-            >
-              <div>
-                {/* Header row with Icon & Badge */}
-                <div className="flex items-center justify-between mb-5">
-                  <div
-                    className={`w-12 h-12 rounded-xl flex items-center justify-center border ${item.accentBg}`}
-                  >
-                    {item.icon}
-                  </div>
-                  <span className="text-[11px] font-semibold text-gray-500 bg-gray-100 px-2.5 py-1 rounded-md">
-                    {item.badge}
-                  </span>
-                </div>
-
-                {/* Title & Description */}
-                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-emerald-700 transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-gray-500 leading-relaxed mb-6">
-                  {item.description}
-                </p>
+        {/* Right Features */}
+        <div className="grid grid-cols-2 lg:flex lg:flex-col gap-3 sm:gap-6 w-full lg:w-1/3 order-3">
+          {currentRightFeatures.map((item, idx) => (
+            <div key={item.id} className="bg-white/60 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.05)] border border-white hover:shadow-lg transition-all flex flex-col sm:flex-row gap-3 sm:gap-4 items-start animate-[fadeIn_0.5s_ease-out] fill-mode-both" style={{ animationDelay: `${idx * 0.1 + 0.2}s` }}>
+              <div className={`w-12 h-12 shrink-0 rounded-full flex items-center justify-center ${activeTab === 'whatsapp' ? 'bg-emerald-50' : 'bg-pink-50'}`}>
+                {item.icon}
               </div>
-
-              {/* Bottom Tags Row */}
-              <div className="pt-4 border-t border-gray-100 flex items-center justify-between text-[11px] font-medium text-gray-400">
-                <span className="flex items-center gap-1 text-emerald-600 font-semibold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                  {item.tagLeft}
-                </span>
-                <span>{item.tagRight}</span>
+              <div>
+                <h3 className="text-sm sm:text-lg font-bold text-gray-900 mb-1 sm:mb-1.5 leading-tight">{item.title}</h3>
+                <p className="text-xs sm:text-sm text-gray-500 leading-relaxed hidden sm:block">{item.description}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* 3. THE TRANSFORMATION ENGINE (Comparison Section) */}
-      <div className="max-w-6xl mx-auto mb-24">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-semibold uppercase tracking-wider mb-3">
-            BEFORE vs AFTER AUTOMATION
+      {/* 3. FOOTER BADGES */}
+      <div className="max-w-4xl mx-auto mt-20 pt-8 border-t border-gray-200/50 flex flex-wrap justify-center gap-6 md:gap-12 text-sm font-semibold text-gray-600">
+        <div className="flex items-center gap-2">
+          <div className={`w-5 h-5 rounded-full flex items-center justify-center text-white ${activeTab === 'whatsapp' ? 'bg-emerald-500' : 'bg-pink-500'}`}>
+            <FiCheck className="w-3 h-3" />
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-3">
-            The Transformation Engine
-          </h2>
-          <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
-            See what happens when manual communication friction is replaced by Fixvil's zero-delay conversational automation.
-          </p>
+          No Setup Fee
         </div>
-
-        {/* 2-Column Comparison Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-          {/* Left: Standard Manual Operation */}
-          <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-xs border border-gray-200/80 flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[11px] font-bold text-gray-500 bg-gray-100 px-3 py-1 rounded-full uppercase tracking-wider">
-                  Without Automation
-                </span>
-                <span className="w-3 h-3 rounded-full bg-rose-400"></span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
-                Standard Manual Operation
-              </h3>
-              <p className="text-xs sm:text-sm text-gray-500 leading-relaxed mb-6">
-                Manual responses cause slow representative queues, drop lead velocity, agent burnouts, and lost buyer momentum.
-              </p>
-
-              {/* Negative points */}
-              <ul className="space-y-3.5 mb-8">
-                <li className="flex items-start gap-3 text-xs sm:text-sm text-gray-600">
-                  <FiX className="w-4 h-4 text-rose-500 flex-shrink-0 mt-0.5" />
-                  <span>Delayed 15m+ lookup (e.g. 10:00 AM corporate enquiries)</span>
-                </li>
-                <li className="flex items-start gap-3 text-xs sm:text-sm text-gray-600">
-                  <FiX className="w-4 h-4 text-rose-500 flex-shrink-0 mt-0.5" />
-                  <span>Unsynchronized agent notes and business context</span>
-                </li>
-                <li className="flex items-start gap-3 text-xs sm:text-sm text-gray-600">
-                  <FiX className="w-4 h-4 text-rose-500 flex-shrink-0 mt-0.5" />
-                  <span>Manual key-in errors &amp; 24h failure to emission</span>
-                </li>
-                <li className="flex items-start gap-3 text-xs sm:text-sm text-gray-600">
-                  <FiX className="w-4 h-4 text-rose-500 flex-shrink-0 mt-0.5" />
-                  <span>Zero off-hours support or weekend coverage</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Bottom Status */}
-            <div className="pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-semibold">
-              <span className="text-gray-400">Performance Metric</span>
-              <span className="text-rose-600 bg-rose-50 px-2.5 py-1 rounded-md">
-                High Lead Dropoff Rate
-              </span>
-            </div>
+        <div className="flex items-center gap-2">
+          <div className={`w-5 h-5 rounded-full flex items-center justify-center text-white ${activeTab === 'whatsapp' ? 'bg-emerald-500' : 'bg-pink-500'}`}>
+            <FiCheck className="w-3 h-3" />
           </div>
-
-          {/* Right: Fixvil Automated Execution */}
-          <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-emerald-200/90 flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-50/50 rounded-full blur-2xl pointer-events-none"></div>
-
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[11px] font-bold text-emerald-800 bg-emerald-100/90 px-3 py-1 rounded-full uppercase tracking-wider">
-                  Enterprise Automated
-                </span>
-                <span className="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
-                Fixvil Automated Execution
-              </h3>
-              <p className="text-xs sm:text-sm text-gray-500 leading-relaxed mb-6">
-                Intelligent orchestration delivers immediate relevant responses, instant lead routing, and unified CRM updates.
-              </p>
-
-              {/* Positive points */}
-              <ul className="space-y-3.5 mb-8">
-                <li className="flex items-start gap-3 text-xs sm:text-sm text-gray-800 font-medium">
-                  <FiCheck className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                  <span>Sub-100ms instant response telemetry via Meta</span>
-                </li>
-                <li className="flex items-start gap-3 text-xs sm:text-sm text-gray-800 font-medium">
-                  <FiCheck className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                  <span>Instant, smart lead routing based on context</span>
-                </li>
-                <li className="flex items-start gap-3 text-xs sm:text-sm text-gray-800 font-medium">
-                  <FiCheck className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                  <span>Real-time bidirectional sync with HubSpot &amp; Salesforce</span>
-                </li>
-                <li className="flex items-start gap-3 text-xs sm:text-sm text-gray-800 font-medium">
-                  <FiCheck className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                  <span>Seamless automated-to-human agent escalation</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Bottom Status */}
-            <div className="pt-4 border-t border-emerald-100 flex items-center justify-between text-xs font-semibold">
-              <span className="text-gray-400">Performance Metric</span>
-              <span className="text-emerald-700 bg-emerald-100/80 px-2.5 py-1 rounded-md">
-                +87% Conversion Resolution
-              </span>
-            </div>
+          Free 14-Day Trial
+        </div>
+        <div className="flex items-center gap-2">
+          <div className={`w-5 h-5 rounded-full flex items-center justify-center text-white ${activeTab === 'whatsapp' ? 'bg-emerald-500' : 'bg-pink-500'}`}>
+            <FiCheck className="w-3 h-3" />
           </div>
+          Cancel Anytime
+        </div>
+        <div className="flex items-center gap-2">
+          <div className={`w-5 h-5 rounded-full flex items-center justify-center text-white ${activeTab === 'whatsapp' ? 'bg-emerald-500' : 'bg-pink-500'}`}>
+            <FiCheck className="w-3 h-3" />
+          </div>
+          4.9/5 (120+ Reviews)
         </div>
       </div>
 
-      {/* 4. DARK CTA BANNER */}
-      <div className="max-w-6xl mx-auto">
-        <div className="bg-[#0b1614] rounded-2xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-xl">
-          {/* Subtle background glow */}
-          <div className="absolute -top-24 -right-24 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl"></div>
-
-          <div className="relative z-10 max-w-xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-800/60 text-emerald-400 text-[11px] font-semibold uppercase tracking-wider mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              Ready to scale your customer communications?
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-3">
-              Start your free trial today.
-            </h2>
-            <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal">
-              Connect your WhatsApp and Instagram channels in under 5 minutes. No credit card required.
-            </p>
-          </div>
-
-          <div className="relative z-10 flex flex-col sm:flex-row items-center gap-3.5 w-full md:w-auto">
-            <a
-              href="/contact"
-              className="w-full sm:w-auto bg-[#00a884] hover:bg-[#008f6f] text-white font-bold text-sm px-6 py-3.5 rounded-lg transition-colors shadow-sm text-center"
-            >
-              Contact Us
-            </a>
-            <a
-              href="/contact"
-              className="w-full sm:w-auto border border-gray-700 hover:border-gray-500 text-gray-200 hover:text-white font-medium text-sm px-6 py-3.5 rounded-lg transition-colors text-center"
-            >
-              Live Sandbox
-            </a>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
