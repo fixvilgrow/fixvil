@@ -133,7 +133,15 @@ const HeroSection = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <button className="flex items-center justify-center gap-2 bg-[#2d8a56] hover:bg-[#247547] text-white font-semibold px-8 py-3.5 rounded-md shadow-sm transition-all group">
+              <button 
+                onClick={() => {
+                  const pricingSection = document.getElementById('pricing');
+                  if (pricingSection) {
+                    pricingSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="flex items-center justify-center gap-2 bg-[#2d8a56] hover:bg-[#247547] text-white font-semibold px-8 py-3.5 rounded-md shadow-sm transition-all group"
+              >
                 Start Free Trial
                 <FiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>

@@ -20,9 +20,13 @@ import {
   FiStar,
 } from "react-icons/fi";
 import { FaInstagram, FaCheck, FaHeart, FaComment, FaPaperPlane } from "react-icons/fa";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function InstagramSolution() {
   const [filterType, setFilterType] = useState<"all" | "story">("all");
+  const { data: session } = useSession();
+  const router = useRouter();
 
   const useCases = [
     {
@@ -86,13 +90,19 @@ export default function InstagramSolution() {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-              <Link
-                href="/contact"
+              <button
+                onClick={() => {
+                  if (!session) {
+                    router.push('/login');
+                  } else {
+                    router.push('/dashboard');
+                  }
+                }}
                 className="bg-[#046c4e] hover:bg-[#03543d] text-white font-bold text-base px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all text-center flex items-center justify-center gap-2 group"
               >
                 Start Free Trial
                 <FiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
+              </button>
               <Link
                 href="/contact"
                 className="border border-gray-200 hover:border-gray-300 bg-white hover:bg-gray-50 text-gray-800 font-semibold text-base px-7 py-3.5 rounded-xl transition-all text-center flex items-center justify-center gap-2"
@@ -473,12 +483,18 @@ export default function InstagramSolution() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-              <Link
-                href="/contact"
+              <button
+                onClick={() => {
+                  if (!session) {
+                    router.push('/login');
+                  } else {
+                    router.push('/dashboard');
+                  }
+                }}
                 className="w-full sm:w-auto bg-[#046c4e] hover:bg-[#03543d] text-white font-bold text-base px-8 py-3.5 rounded-xl shadow-md transition-all text-center"
               >
                 Start Free Trial
-              </Link>
+              </button>
               <Link
                 href="/contact"
                 className="w-full sm:w-auto border border-gray-300 bg-white hover:bg-gray-100 text-gray-800 font-semibold text-base px-8 py-3.5 rounded-xl transition-all text-center"

@@ -3,10 +3,12 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { FiChevronDown, FiUser, FiMenu, FiX, FiMessageSquare, FiInstagram } from "react-icons/fi";
+import { useSession, signOut } from "next-auth/react";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
+  const { data: session } = useSession();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
@@ -81,21 +83,33 @@ const Navbar = () => {
 
           {/* Actions */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="text-gray-700 hover:text-gray-900 font-medium text-sm px-3 py-2 transition-colors">
-              Log in
-            </button>
+            {!session ? (
+              <Link href="/login" className="text-gray-700 hover:text-gray-900 font-medium text-sm px-3 py-2 transition-colors">
+                Log in
+              </Link>
+            ) : (
+              <button onClick={() => signOut()} className="text-gray-700 hover:text-gray-900 font-medium text-sm px-3 py-2 transition-colors">
+                Log out
+              </button>
+            )}
             <Link
-              href="/contact"
+              href={session ? "/dashboard" : "/signup"}
               className="bg-[#046c4e] hover:bg-[#03543d] text-white font-medium text-sm px-5 py-2.5 rounded-lg shadow-sm transition-all hover:shadow-md inline-block"
             >
-              Start Free Trial
+              {session ? "Dashboard" : "Start Free Trial"}
             </Link>
-            <button
-              aria-label="User profile"
-              className="w-9 h-9 rounded-full bg-[#046c4e] hover:bg-[#03543d] flex items-center justify-center text-white shadow-sm transition-all shrink-0"
-            >
-              <FiUser className="w-4 h-4" />
-            </button>
+            {session && (
+              <button
+                aria-label="User profile"
+                className="w-9 h-9 rounded-full bg-[#046c4e] hover:bg-[#03543d] flex items-center justify-center text-white shadow-sm transition-all shrink-0 overflow-hidden"
+              >
+                {session.user?.image ? (
+                  <img src={session.user.image} alt="User profile" className="w-full h-full object-cover" />
+                ) : (
+                  <FiUser className="w-4 h-4" />
+                )}
+              </button>
+            )}
           </div>
 
           {/* Mobile Menu Button */}

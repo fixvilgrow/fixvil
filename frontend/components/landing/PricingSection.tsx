@@ -2,9 +2,13 @@
 
 import React, { useState } from "react";
 import { FiCheck } from "react-icons/fi";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const PricingSection = () => {
   const [isYearly, setIsYearly] = useState(false);
+  const { data: session } = useSession();
+  const router = useRouter();
 
   const plans = [
     {
@@ -136,6 +140,13 @@ const PricingSection = () => {
               </ul>
               
               <button 
+                onClick={() => {
+                  if (!session) {
+                    router.push('/login');
+                  } else {
+                    console.log('Proceed to trial');
+                  }
+                }}
                 className={`w-full py-3.5 rounded-xl font-semibold text-sm transition-all shadow-sm ${plan.popular ? 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-md' : 'bg-white text-gray-900 border border-gray-200 hover:bg-gray-50 hover:border-gray-300'}`}
               >
                 {plan.buttonText}
