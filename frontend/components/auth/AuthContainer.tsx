@@ -29,7 +29,7 @@ export default function AuthContainer({ initialMode }: AuthContainerProps) {
       
       // Redirect after showing success animation
       setTimeout(() => {
-        router.push("/");
+        router.push("/onboarding");
       }, 2000);
     }, 1500);
   };
