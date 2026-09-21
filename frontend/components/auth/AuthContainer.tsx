@@ -55,7 +55,7 @@ export default function AuthContainer({ initialMode }: AuthContainerProps) {
   return (
     <div className="min-h-screen bg-[#f3faeb] flex items-center justify-center p-4 sm:p-6 lg:p-8 relative overflow-hidden">
       {/* Container */}
-      <div className="w-full max-w-6xl bg-white rounded-[2rem] shadow-2xl overflow-hidden relative min-h-[700px] flex">
+      <div className="w-full max-w-6xl bg-white rounded-[2rem] shadow-2xl overflow-hidden relative min-h-[700px] lg:h-[700px] flex lg:block">
         
         {/* Left Side (Green Panel) - Hidden on Mobile */}
         <AnimatePresence initial={false}>
@@ -66,7 +66,7 @@ export default function AuthContainer({ initialMode }: AuthContainerProps) {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: "-100%", opacity: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="hidden lg:flex w-1/2 bg-[#d1f4d9] relative flex-col p-12 justify-between z-10"
+              className="hidden lg:flex w-1/2 bg-[#d1f4d9] absolute top-0 left-0 h-full flex-col p-12 justify-between z-10"
               style={{ borderRadius: "0 2rem 2rem 0" }}
             >
               <div className="absolute inset-0 z-0 overflow-hidden" style={{ borderRadius: "0 2rem 2rem 0" }}>
@@ -118,7 +118,11 @@ export default function AuthContainer({ initialMode }: AuthContainerProps) {
         </AnimatePresence>
 
         {/* Form Side (Right for Login, Left for Signup in Desktop) */}
-        <div className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16 bg-white relative z-20">
+        <div 
+          className={`w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16 bg-white relative lg:absolute top-0 h-full z-20 transition-all duration-500 ease-in-out ${
+            mode === "login" ? "lg:right-0" : "lg:left-0"
+          }`}
+        >
           <AnimatePresence mode="wait">
             {mode === "login" ? (
               <motion.div
@@ -373,7 +377,7 @@ export default function AuthContainer({ initialMode }: AuthContainerProps) {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: "100%", opacity: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="hidden lg:flex w-1/2 bg-[#d1f4d9] relative flex-col p-12 justify-between z-10"
+              className="hidden lg:flex w-1/2 bg-[#d1f4d9] absolute top-0 right-0 h-full flex-col p-12 justify-between z-10"
               style={{ borderRadius: "2rem 0 0 2rem" }}
             >
               <div className="absolute inset-0 z-0 overflow-hidden" style={{ borderRadius: "2rem 0 0 2rem" }}>
