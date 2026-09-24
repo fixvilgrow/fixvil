@@ -7,6 +7,8 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import Navbar from '@/components/common/Navbar';
+import Footer from '@/components/common/Footer';
 
 export default function GuidelinesPage() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -21,8 +23,10 @@ export default function GuidelinesPage() {
 
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans flex flex-col">
+      <Navbar />
+      
       {/* Hero Section */}
-      <div className="bg-[#F6FAF7] pt-16 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
+      <div className="bg-[#F6FAF7] pt-24 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between">
           <div className="lg:w-1/2 z-10">
             <div className="inline-block bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-6">
@@ -384,6 +388,7 @@ export default function GuidelinesPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

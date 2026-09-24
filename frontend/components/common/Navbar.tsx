@@ -76,6 +76,9 @@ const Navbar = () => {
             <Link href="/pricing" className="text-gray-600 hover:text-emerald-600 font-medium text-sm transition-colors">
               Pricing
             </Link>
+            <Link href="/guidelines" className="text-gray-600 hover:text-emerald-600 font-medium text-sm transition-colors">
+              Guidelines
+            </Link>
             <Link href="/about" className="text-gray-600 hover:text-emerald-600 font-medium text-sm transition-colors">
               About Us
             </Link>
@@ -162,6 +165,13 @@ const Navbar = () => {
             className="block text-gray-700 font-medium text-base py-2"
           >
             Pricing
+          </Link>
+          <Link
+            href="/guidelines"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-gray-700 font-medium text-base py-2"
+          >
+            Guidelines
           </Link>
           <Link
             href="/about"
