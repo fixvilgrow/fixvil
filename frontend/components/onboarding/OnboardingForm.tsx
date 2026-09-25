@@ -50,11 +50,6 @@ export default function OnboardingForm() {
     setTimeout(() => {
       setStep(3); // Success step
       setIsSubmitting(false);
-      
-      // Redirect to dashboard after a delay
-      setTimeout(() => {
-        router.push("/dashboard");
-      }, 2500);
     }, 1500);
   };
 
@@ -255,16 +250,18 @@ export default function OnboardingForm() {
                 </motion.div>
                 
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1 }}
-                  className="flex items-center gap-2 text-sm text-gray-400 font-medium bg-gray-50 px-4 py-2 rounded-full mt-4"
+                  className="w-full max-w-sm mx-auto mt-8 flex flex-col gap-3"
                 >
-                  <svg className="animate-spin h-4 w-4 text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Redirecting to dashboard...
+                  <button
+                    onClick={() => router.push("/dashboard")}
+                    className="w-full flex items-center justify-center gap-2 py-4 px-6 border border-transparent rounded-xl shadow-lg text-lg font-bold text-white bg-[#25D366] hover:bg-[#20b858] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#25D366] transition-all transform hover:scale-105"
+                  >
+                    <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 413.6c-33.6 0-66.5-9.1-95.3-26l-6.8-4-71 18.6 18.9-69.3-4.4-7C45.3 293 33.8 259 33.8 223.9c0-104.9 85.3-190.2 190.2-190.2 52.3 0 101.5 20.4 138.5 57.3 37 36.9 57.3 86.1 57.3 138.5 0 104.9-85.3 190.2-190.2 190.2zM328.2 291c-5.7-2.9-33.8-16.7-39-18.6-5.2-1.9-9-2.9-12.8 2.9-3.8 5.7-14.7 18.6-18.1 22.4-3.3 3.8-6.6 4.3-12.4 1.4-5.7-2.9-24.1-8.9-45.9-28.5-17-15.3-28.5-34.2-31.8-40-3.3-5.7-.4-8.8 2.5-11.7 2.6-2.6 5.7-6.6 8.5-10 2.9-3.3 3.8-5.7 5.7-9.5 1.9-3.8.9-7.1-.5-10-1.4-2.9-12.8-30.9-17.6-42.3-4.6-11.1-9.3-9.6-12.8-9.8-3.3-.2-7.1-.2-10.9-.2-3.8 0-10 1.4-15.6 7.1-5.7 5.7-22.3 21.8-22.3 53.1 0 31.3 22.8 61.6 26.1 66 3.3 4.3 45 68.6 109 95.8 15.2 6.5 27.1 10.4 36.4 13.3 15.3 4.9 29.2 4.2 40.2 2.6 12.3-1.8 33.8-13.8 38.5-27.1 4.7-13.3 4.7-24.7 3.3-27.1-1.4-2.5-5.2-3.9-11-6.8z"></path></svg>
+                    Connect WhatsApp
+                  </button>
                 </motion.div>
               </motion.div>
             )}
