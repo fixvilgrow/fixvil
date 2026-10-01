@@ -4,6 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { FaPlayCircle, FaInstagram } from "react-icons/fa";
 import { CheckCheck, CheckCircle2, MessageSquare, LayoutDashboard, MessageCircle, Bot, Users, Settings, Search, ShieldCheck } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const ChatContent = ({ step }: { step: number }) => {
   return (
@@ -193,6 +194,39 @@ const AnalyticsContent = () => {
   );
 };
 
+const AutomationsContent = () => {
+  return (
+    <div className="flex flex-col h-full gap-4 w-full animate-[fadeIn_0.5s_ease-out] items-center justify-center text-center p-8 bg-white rounded-xl border border-gray-100 shadow-sm mt-2">
+      <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mb-2">
+        <Bot className="w-10 h-10 text-[#059669]" />
+      </div>
+      <h3 className="font-bold text-gray-900 text-lg">AI Agents Active</h3>
+      <p className="text-sm text-gray-500 max-w-[250px]">
+        Your intelligent agents are currently handling 45 customer conversations across all channels.
+      </p>
+      
+      <div className="w-full max-w-[300px] mt-6 flex flex-col gap-3 text-left">
+        <div className="bg-gray-50 rounded-lg p-3 border border-gray-100 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <MessageSquare className="w-4 h-4 text-[#25D366]" />
+            <span className="text-sm font-medium text-gray-700">WhatsApp Leads</span>
+          </div>
+          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+        </div>
+        <div className="bg-gray-50 rounded-lg p-3 border border-gray-100 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <FaInstagram className="w-4 h-4 text-[#E1306C]" />
+            <span className="text-sm font-medium text-gray-700">Instagram DMs</span>
+          </div>
+          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const TABS = ["WhatsApp", "Instagram", "Analytics", "Automations"];
+
 const HeroSection = () => {
   const [step, setStep] = useState(0);
   const laptopChatRef = useRef<HTMLDivElement>(null);
@@ -201,13 +235,31 @@ const HeroSection = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setStep((s) => {
-        if (s >= 7) return 0; // Wait a bit then loop back
-        return s + 1;
+      setStep((currentStep) => {
+        let maxStep = 7; // WhatsApp
+        if (activeTab === "Instagram") maxStep = 3;
+        else if (activeTab === "Analytics") maxStep = 2; // static content
+        else if (activeTab === "Automations") maxStep = 2; // static content
+
+        if (currentStep >= maxStep) {
+          const currentIndex = TABS.indexOf(activeTab);
+          let nextIndex = (currentIndex + 1) % TABS.length;
+
+          // On mobile screens, we only cycle through WhatsApp and Instagram
+          if (typeof window !== "undefined" && window.innerWidth < 1024) {
+            while (TABS[nextIndex] === "Analytics" || TABS[nextIndex] === "Automations") {
+              nextIndex = (nextIndex + 1) % TABS.length;
+            }
+          }
+
+          setActiveTab(TABS[nextIndex]);
+          return 0; // reset step for the new tab
+        }
+        return currentStep + 1;
       });
-    }, 2500);
+    }, 2000); // 2 second intervals
     return () => clearInterval(interval);
-  }, []);
+  }, [activeTab]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -295,31 +347,61 @@ const HeroSection = () => {
                 <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[85px] h-[26px] bg-black rounded-[14px] z-50"></div>
 
                 <div className="flex-1 flex flex-col h-full bg-[#f9fafb] relative overflow-hidden rounded-[32px]">
-                  {/* Header */}
-                  <div className="h-20 bg-[#007b5e] flex items-end px-5 pb-3 shrink-0 z-10">
-                    <div className="flex items-center gap-3 w-full text-white">
-                      <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center font-extrabold text-[#007b5e] text-lg tracking-tight">
-                        FV
-                      </div>
-                      <div className="flex flex-col">
-                        <div className="font-bold text-[17px] leading-tight">Fixvil</div>
-                        <div className="text-[12px] text-white/90 leading-tight">bot • online</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Chat Body Wrapper */}
-                  <div className="flex-1 p-3 pb-8 relative bg-[#f0eee9] overflow-hidden flex flex-col min-h-0">
-                    <div className="absolute inset-0 z-0 opacity-40 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#b4afa3 1.5px, transparent 1.5px)', backgroundSize: '20px 20px' }}></div>
-
-                    {/* Chat Container */}
-                    <div
-                      ref={phoneChatRef}
-                      className="relative z-10 flex-1 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] flex flex-col gap-4 scroll-smooth pr-1 pb-10"
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeTab}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="w-full h-full flex flex-col"
                     >
-                      <ChatContent step={step} />
-                    </div>
-                  </div>
+                      {activeTab === 'WhatsApp' && (
+                        <>
+                          <div className="h-20 bg-[#007b5e] flex items-end px-5 pb-3 shrink-0 z-10">
+                            <div className="flex items-center gap-3 w-full text-white">
+                              <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center font-extrabold text-[#007b5e] text-lg tracking-tight">
+                                FV
+                              </div>
+                              <div className="flex flex-col">
+                                <div className="font-bold text-[16px] leading-tight">Fixvil</div>
+                                <div className="text-[11px] text-white/90 leading-tight">bot • online</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex-1 p-3 pb-8 relative bg-[#f0eee9] overflow-hidden flex flex-col min-h-0">
+                            <div className="absolute inset-0 z-0 opacity-40 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#b4afa3 1.5px, transparent 1.5px)', backgroundSize: '20px 20px' }}></div>
+                            <div ref={phoneChatRef} className="relative z-10 flex-1 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] flex flex-col gap-4 scroll-smooth pr-1 pb-10">
+                              <ChatContent step={step} />
+                            </div>
+                          </div>
+                        </>
+                      )}
+
+                      {activeTab === 'Instagram' && (
+                        <>
+                          <div className="h-20 bg-white border-b border-gray-100 flex items-end px-4 pb-3 shrink-0 z-10">
+                            <div className="flex items-center justify-between w-full text-black">
+                              <div className="flex items-center gap-2">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                                <div className="font-bold text-[15px] tracking-tight">Customer_Name</div>
+                              </div>
+                              <div className="flex items-center gap-4">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect width="15" height="14" x="1" y="5" rx="2" ry="2"/></svg>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex-1 p-3 pb-8 relative bg-white overflow-hidden flex flex-col min-h-0">
+                            <div ref={phoneChatRef} className="relative z-10 flex-1 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] flex flex-col gap-4 scroll-smooth pr-1 pb-10">
+                              <InstagramChatContent step={step} />
+                            </div>
+                          </div>
+                        </>
+                      )}
+
+                    </motion.div>
+                  </AnimatePresence>
 
                   {/* Home Indicator */}
                   <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[110px] h-[4px] bg-gray-400 rounded-full z-50"></div>
@@ -339,7 +421,7 @@ const HeroSection = () => {
             </div>
 
             {/* Modern Desktop Display Window Mockup */}
-            <div className="hidden lg:block relative w-[115%] max-w-[1000px] lg:-mr-12 xl:-mr-20 mt-4">
+            <div className="hidden lg:block relative w-full mt-4">
 
               {/* Outer Subtle Ambient Glow */}
               <div className="absolute -inset-2 bg-gradient-to-tr from-[#059669]/20 via-emerald-400/10 to-teal-500/20 rounded-3xl blur-2xl opacity-70 pointer-events-none"></div>
@@ -368,7 +450,10 @@ const HeroSection = () => {
                       ].map((tab) => (
                         <div
                           key={tab.name}
-                          onClick={() => setActiveTab(tab.name)}
+                          onClick={() => {
+                            setActiveTab(tab.name);
+                            setStep(0);
+                          }}
                           className={`flex items-center gap-3 px-3 py-2 rounded-lg text-xs transition-all cursor-pointer ${activeTab === tab.name
                             ? "bg-emerald-50 text-[#059669] font-semibold border border-emerald-100/70"
                             : "text-gray-600 font-medium hover:bg-gray-100/70"
@@ -387,44 +472,57 @@ const HeroSection = () => {
 
                   {/* Dashboard Main View Area */}
                   <div className="flex-1 flex flex-col h-full bg-[#f9fafb] relative overflow-hidden">
-                    {/* Header */}
-                    {activeTab !== 'Instagram' && (
-                      <div className="h-12 bg-white flex items-center justify-between px-5 border-b border-gray-100 shrink-0 z-10">
-                        <div className="flex items-center gap-2">
-                          <div className={`w-6 h-6 rounded-full flex items-center justify-center text-white ${activeTab === 'WhatsApp' ? 'bg-[#25D366]' :
-                            'bg-[#059669]'
-                            }`}>
-                            {activeTab === 'WhatsApp' && <MessageSquare className="w-3.5 h-3.5" fill="white" />}
-                            {activeTab !== 'WhatsApp' && <LayoutDashboard className="w-3.5 h-3.5" />}
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={activeTab}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
+                        className="w-full h-full flex flex-col"
+                      >
+                        {/* Header */}
+                        {activeTab !== 'Instagram' && (
+                          <div className="h-12 bg-white flex items-center justify-between px-5 border-b border-gray-100 shrink-0 z-10">
+                            <div className="flex items-center gap-2">
+                              <div className={`w-6 h-6 rounded-full flex items-center justify-center text-white ${activeTab === 'WhatsApp' ? 'bg-[#25D366]' :
+                                'bg-[#059669]'
+                                }`}>
+                                {activeTab === 'WhatsApp' && <MessageSquare className="w-3.5 h-3.5" fill="white" />}
+                                {activeTab !== 'WhatsApp' && <LayoutDashboard className="w-3.5 h-3.5" />}
+                              </div>
+                              <div className="font-semibold text-gray-800 text-sm">
+                                {activeTab === 'WhatsApp' ? 'WhatsApp Business' : activeTab}
+                              </div>
+                            </div>
+                            <Search className="w-4 h-4 text-gray-400" />
                           </div>
-                          <div className="font-semibold text-gray-800 text-sm">
-                            {activeTab === 'WhatsApp' ? 'WhatsApp Business' : activeTab}
+                        )}
+
+                        {/* Chat / Content Wrapper */}
+                        <div className={`flex-1 p-4 relative overflow-hidden flex flex-col min-h-0 ${activeTab === 'Instagram' ? 'bg-white' : 'bg-[#efeae2]'}`}>
+                          {activeTab !== 'Instagram' && (
+                            <div className="absolute inset-0 z-0 opacity-40 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#d4cec3 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                          )}
+
+                          {/* Chat Container */}
+                          <div
+                            ref={laptopChatRef}
+                            className="relative z-10 flex-1 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] flex flex-col gap-4 scroll-smooth pr-2 pb-10"
+                          >
+                            {activeTab === 'Instagram' ? (
+                              <InstagramChatContent step={step} />
+                            ) : activeTab === 'Analytics' ? (
+                              <AnalyticsContent />
+                            ) : activeTab === 'Automations' ? (
+                              <AutomationsContent />
+                            ) : (
+                              <ChatContent step={step} />
+                            )}
                           </div>
                         </div>
-                        <Search className="w-4 h-4 text-gray-400" />
-                      </div>
-                    )}
-
-                    {/* Chat / Content Wrapper */}
-                    <div className={`flex-1 p-4 relative overflow-hidden flex flex-col min-h-0 ${activeTab === 'Instagram' ? 'bg-white' : 'bg-[#efeae2]'}`}>
-                      {activeTab !== 'Instagram' && (
-                        <div className="absolute inset-0 z-0 opacity-40 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#d4cec3 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
-                      )}
-
-                      {/* Chat Container */}
-                      <div
-                        ref={laptopChatRef}
-                        className="relative z-10 flex-1 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] flex flex-col gap-4 scroll-smooth pr-2 pb-10"
-                      >
-                        {activeTab === 'Instagram' ? (
-                          <InstagramChatContent step={step} />
-                        ) : activeTab === 'Analytics' ? (
-                          <AnalyticsContent />
-                        ) : (
-                          <ChatContent step={step} />
-                        )}
-                      </div>
-                    </div>
+                      </motion.div>
+                    </AnimatePresence>
                   </div>
                 </div>
               </div>

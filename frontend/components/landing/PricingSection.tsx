@@ -42,7 +42,7 @@ const PricingSection = () => {
     },
     {
       name: "Business",
-      description: "For businesses looking to scale their operations.",
+      description: "For businesses looking to scale operations.",
       priceMonthly: "2,999",
       priceYearly: "2,399",
       features: [
@@ -75,69 +75,71 @@ const PricingSection = () => {
   ];
 
   return (
-    <section id="pricing" className="py-24 bg-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="pricing" className="py-24 bg-[#FAFAFA] relative overflow-hidden font-sans">
+      
+      {/* Subtle Background Glow for MNC feel */}
+      <div className="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-b from-gray-100 to-transparent pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
-          <div className="max-w-2xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
-              Simple, Transparent Pricing
-            </h2>
-            <p className="text-lg text-gray-600">
-              Choose the plan that's right for you. Cancel anytime.
-            </p>
-          </div>
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">
+            Plans that scale with you
+          </h2>
+          <p className="text-lg text-gray-500 mb-10">
+            Simple, transparent pricing. No hidden fees. Cancel anytime.
+          </p>
           
-          <div className="flex items-center gap-3 bg-gray-50 p-1.5 rounded-xl border border-gray-100">
+          {/* Enterprise Grade Toggle */}
+          <div className="inline-flex items-center p-1 bg-gray-200/50 rounded-full border border-gray-200/80 backdrop-blur-sm">
             <button 
               onClick={() => setIsYearly(false)}
-              className={`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all ${!isYearly ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+              className={`relative px-8 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${!isYearly ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
             >
               Monthly
             </button>
             <button 
               onClick={() => setIsYearly(true)}
-              className={`px-6 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all ${isYearly ? 'bg-emerald-600 text-white shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+              className={`relative px-8 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-all duration-300 ${isYearly ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
             >
-              Yearly <span className={`${isYearly ? 'text-emerald-200' : 'text-emerald-600'}`}>(Save 20%)</span>
+              Annually <span className="text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full text-[10px] uppercase tracking-wider font-bold ml-1">Save 20%</span>
             </button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-7xl mx-auto items-stretch">
           {plans.map((plan, index) => (
             <div 
               key={index} 
-              className={`relative rounded-3xl p-8 transition-transform hover:-translate-y-2 duration-300 flex flex-col ${plan.popular ? 'bg-white border-2 border-emerald-500 shadow-xl' : 'bg-white border border-gray-200 hover:shadow-lg hover:border-gray-300'}`}
+              className={`relative rounded-3xl p-8 transition-all duration-300 flex flex-col bg-white h-full ${
+                plan.popular 
+                  ? 'lg:-translate-y-2 shadow-[0_20px_40px_-15px_rgba(16,185,129,0.25)] ring-2 ring-emerald-500 z-10' 
+                  : 'shadow-sm border-2 border-emerald-500 md:border md:border-gray-200 hover:shadow-md md:hover:border-gray-300'
+              }`}
             >
               {plan.popular && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-emerald-500 text-white px-4 py-1 rounded-full text-xs font-bold tracking-wider uppercase">
-                  Most Popular
+                <div className="absolute -top-4 left-0 right-0 flex justify-center">
+                  <div className="bg-emerald-500 text-white px-4 py-1 rounded-full text-[11px] font-bold tracking-widest uppercase shadow-sm">
+                    Most Popular
+                  </div>
                 </div>
               )}
               
-              <h3 className="text-xl font-bold text-gray-900 mb-2">{plan.name}</h3>
-              <p className="text-sm text-gray-500 mb-6 h-10">{plan.description}</p>
+              <div className="mb-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{plan.name}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed min-h-[3rem]">{plan.description}</p>
+              </div>
               
-              <div className="mb-8">
+              <div className="mb-6">
                 {plan.priceMonthly === "Custom" ? (
-                  <div className="text-4xl font-extrabold text-gray-900">Custom</div>
+                  <div className="text-4xl font-bold tracking-tight text-gray-900">Custom</div>
                 ) : (
                   <div className="flex items-end gap-1">
-                    <span className="text-4xl font-extrabold text-gray-900">₹{isYearly ? plan.priceYearly : plan.priceMonthly}</span>
-                    <span className="text-gray-500 font-medium mb-1">/month</span>
+                    <span className="text-4xl font-bold tracking-tight text-gray-900">₹{isYearly ? plan.priceYearly : plan.priceMonthly}</span>
+                    <span className="font-medium mb-1 text-sm text-gray-500">/mo</span>
                   </div>
                 )}
               </div>
-              
-              <ul className="space-y-4 mb-8 flex-1">
-                {plan.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <FiCheck className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
-                    <span className="text-sm text-gray-700 font-medium">{feature}</span>
-                  </li>
-                ))}
-              </ul>
               
               <button 
                 onClick={() => {
@@ -147,18 +149,32 @@ const PricingSection = () => {
                     console.log('Proceed to trial');
                   }
                 }}
-                className={`w-full py-3.5 rounded-xl font-semibold text-sm transition-all shadow-sm ${plan.popular ? 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-md' : 'bg-white text-gray-900 border border-gray-200 hover:bg-gray-50 hover:border-gray-300'}`}
+                className={`w-full py-3.5 rounded-xl font-bold text-sm transition-all duration-200 shadow-sm ${
+                  plan.popular 
+                    ? 'bg-emerald-600 text-white hover:bg-emerald-500 hover:shadow-md' 
+                    : 'bg-white text-gray-900 border border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+                }`}
               >
                 {plan.buttonText}
               </button>
+
+              <hr className="my-8 border-gray-100" />
+              
+              <p className="text-xs font-semibold tracking-wider text-gray-900 uppercase mb-4 mt-auto">What's included</p>
+              
+              <ul className="space-y-4 flex-1">
+                {plan.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <FiCheck className="w-5 h-5 text-emerald-500 shrink-0" />
+                    <span className="text-sm text-gray-600 font-medium">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              
             </div>
           ))}
         </div>
         
-        <div className="mt-12 text-center flex items-center justify-center gap-2 text-gray-600 text-sm font-medium">
-          <FiCheck className="text-emerald-500 w-5 h-5" />
-          14-Day Money-Back Guarantee. No questions asked.
-        </div>
       </div>
     </section>
   );
