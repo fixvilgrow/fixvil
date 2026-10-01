@@ -6,12 +6,12 @@ import { FaAmazon, FaFigma } from "react-icons/fa";
 
 const LogoTicker = () => {
   const logos = [
-    { name: "tranzact", icon: <SiGoogle className="w-8 h-8 text-[#4285F4]" /> },
-    { name: "GREENLEAF Organics", icon: <SiNetflix className="w-8 h-8 text-[#E50914]" /> },
-    { name: "DreamHome REALTY", icon: <FaAmazon className="w-8 h-8 text-[#FF9900]" /> },
-    { name: "EduPrime", icon: <SiSpotify className="w-8 h-8 text-[#1ED760]" /> },
-    { name: "Finova", icon: <FaFigma className="w-8 h-8 text-[#F24E1E]" /> },
+    { name: "Finance", icon: <FaFigma className="w-8 h-8 text-[#F24E1E]" /> },
     { name: "UrbanKart", icon: <SiAirbnb className="w-8 h-8 text-[#FF5A5F]" /> },
+    { name: "Greatezct", icon: <SiGoogle className="w-8 h-8 text-[#4285F4]" /> },
+    { name: "GREENLEAF Organics", icon: <SiNetflix className="w-8 h-8 text-[#2e7d32]" /> },
+    { name: "DreamHome REALTY", icon: <FaAmazon className="w-8 h-8 text-[#FF9900]" /> },
+    { name: "EduLink", icon: <SiSpotify className="w-8 h-8 text-[#1ED760]" /> },
   ];
 
   return (
@@ -28,7 +28,7 @@ const LogoTicker = () => {
             {[...logos, ...logos, ...logos, ...logos].map((logo, index) => (
               <div key={index} className="flex items-center gap-2 text-gray-900 shrink-0">
                 {logo.icon}
-                <span className="font-bold text-lg hidden sm:block whitespace-nowrap">{logo.name}</span>
+                <span className="font-bold text-lg whitespace-nowrap">{logo.name}</span>
               </div>
             ))}
           </div>

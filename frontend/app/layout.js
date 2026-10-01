@@ -1,10 +1,15 @@
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import AuthProvider from "../components/AuthProvider";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-jakarta",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
 });
 
 export const metadata = {
@@ -23,7 +28,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`bg-gray-50 text-gray-900 ${plusJakartaSans.variable} font-sans`}>
+      <body className={`bg-gray-50 text-gray-900 ${plusJakartaSans.variable} ${playfair.variable} font-sans`}>
         <AuthProvider>
           {children}
         </AuthProvider>

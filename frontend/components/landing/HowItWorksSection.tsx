@@ -35,31 +35,26 @@ const HowItWorksSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-white overflow-hidden relative font-sans">
+    <section className="py-12 lg:py-16 bg-white overflow-hidden relative font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Top Subheading */}
-        <div className="text-left pt-8 lg:pt-14 mb-16 lg:mb-20">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">How It Works</h2>
-        </div>
-
-        <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-0">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-8">
           
           {/* Left Text Column */}
-          <div className="lg:w-1/3 z-10 relative">
+          <div className="lg:w-1/3 z-10 relative lg:-translate-y-16">
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight tracking-tight">
               We have best team and best process
             </h2>
-            <p className="text-gray-500 mb-8 leading-relaxed text-sm">
+            <p className="text-gray-500 mb-8 leading-relaxed text-sm lg:text-base">
               Everything you need to automate and grow—powerful, easy, and built for results. Get started in just a few simple steps and see the magic happen.
             </p>
-            <button className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3.5 px-8 rounded-full transition-colors shadow-lg shadow-emerald-500/30">
+            <button className="bg-[#059669] hover:bg-[#047857] text-white font-semibold py-3.5 px-8 rounded-[10px] transition-colors shadow-md">
               Get Started
             </button>
           </div>
 
           {/* Right Column - Desktop Curve */}
-          <div className="hidden lg:block lg:w-2/3 relative h-[600px] w-full">
+          <div className="hidden lg:block lg:w-2/3 relative h-[500px] w-full">
             <svg className="absolute inset-0 w-full h-full pointer-events-none drop-shadow-md" viewBox="0 0 100 100" preserveAspectRatio="none">
               <path 
                 d="M 0 90 C 10 90, 10 75, 20 75 C 35 75, 35 55, 45 55 C 55 55, 55 35, 70 35 C 80 35, 80 15, 90 15 C 95 15, 100 10, 100 10" 

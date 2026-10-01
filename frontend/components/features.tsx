@@ -178,15 +178,15 @@ export default function Features() {
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8 lg:gap-4 xl:gap-12 relative z-10 mt-12">
         
         {/* Left Features */}
-        <div className="grid grid-cols-2 lg:flex lg:flex-col gap-3 sm:gap-6 w-full lg:w-1/3 order-2 lg:order-1">
+        <div className="flex flex-col gap-4 sm:gap-6 w-full lg:w-1/3 order-2 lg:order-1">
           {currentLeftFeatures.map((item, idx) => (
-            <div key={item.id} className="bg-white/60 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.05)] border border-white hover:shadow-lg transition-all flex flex-col sm:flex-row gap-3 sm:gap-4 items-start animate-[fadeIn_0.5s_ease-out] fill-mode-both" style={{ animationDelay: `${idx * 0.1}s` }}>
+            <div key={item.id} className={`bg-white/60 backdrop-blur-sm rounded-2xl p-5 sm:p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.05)] border border-white hover:shadow-lg transition-all flex-row gap-4 items-start animate-[fadeIn_0.5s_ease-out] fill-mode-both ${idx >= 2 ? 'hidden sm:flex' : 'flex'}`} style={{ animationDelay: `${idx * 0.1}s` }}>
               <div className={`w-12 h-12 shrink-0 rounded-full flex items-center justify-center ${activeTab === 'whatsapp' ? 'bg-emerald-50' : 'bg-pink-50'}`}>
                 {item.icon}
               </div>
-              <div>
-                <h3 className="text-sm sm:text-lg font-bold text-gray-900 mb-1 sm:mb-1.5 leading-tight">{item.title}</h3>
-                <p className="text-xs sm:text-sm text-gray-500 leading-relaxed hidden sm:block">{item.description}</p>
+              <div className="flex-1">
+                <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-1.5 leading-tight">{item.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{item.description}</p>
               </div>
             </div>
           ))}
@@ -335,15 +335,15 @@ export default function Features() {
         </div>
 
         {/* Right Features */}
-        <div className="grid grid-cols-2 lg:flex lg:flex-col gap-3 sm:gap-6 w-full lg:w-1/3 order-3">
+        <div className="flex flex-col gap-4 sm:gap-6 w-full lg:w-1/3 order-3">
           {currentRightFeatures.map((item, idx) => (
-            <div key={item.id} className="bg-white/60 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.05)] border border-white hover:shadow-lg transition-all flex flex-col sm:flex-row gap-3 sm:gap-4 items-start animate-[fadeIn_0.5s_ease-out] fill-mode-both" style={{ animationDelay: `${idx * 0.1 + 0.2}s` }}>
+            <div key={item.id} className={`bg-white/60 backdrop-blur-sm rounded-2xl p-5 sm:p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.05)] border border-white hover:shadow-lg transition-all flex-row gap-4 items-start animate-[fadeIn_0.5s_ease-out] fill-mode-both ${idx >= 2 ? 'hidden sm:flex' : 'flex'}`} style={{ animationDelay: `${idx * 0.1 + 0.2}s` }}>
               <div className={`w-12 h-12 shrink-0 rounded-full flex items-center justify-center ${activeTab === 'whatsapp' ? 'bg-emerald-50' : 'bg-pink-50'}`}>
                 {item.icon}
               </div>
-              <div>
-                <h3 className="text-sm sm:text-lg font-bold text-gray-900 mb-1 sm:mb-1.5 leading-tight">{item.title}</h3>
-                <p className="text-xs sm:text-sm text-gray-500 leading-relaxed hidden sm:block">{item.description}</p>
+              <div className="flex-1">
+                <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-1.5 leading-tight">{item.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{item.description}</p>
               </div>
             </div>
           ))}
